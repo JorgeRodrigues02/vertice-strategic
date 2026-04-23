@@ -39,7 +39,8 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 10px 60px;
+      padding: 0 60px;
+      height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -51,15 +52,40 @@
     .nav-logo {
       display: flex;
       align-items: center;
+      gap: 14px;
       text-decoration: none;
     }
 
     .nav-logo img {
-      height: 160px;
+      height: 46px;
       width: auto;
       display: block;
-      margin: -28px -20px;
-      object-fit: cover;
+    }
+
+    .nav-brand {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .nav-brand-name {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 500;
+      font-size: 1.05rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--navy);
+      line-height: 1.1;
+    }
+
+    .nav-brand-sub {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-top: 3px;
     }
 
     .nav-tagline {
@@ -79,7 +105,7 @@
       display: flex;
       align-items: flex-end;
       overflow: hidden;
-      padding-top: 130px;
+      padding-top: 72px;
     }
 
     .hero-img {
@@ -400,7 +426,7 @@
     @media (max-width: 700px) {
       nav { padding: 12px 24px; }
       .nav-tagline { display: none; }
-      .nav-logo img { height: 80px; }
+      .nav-logo img { height: 36px; }
       section { padding: 64px 24px; }
       .hero-content { padding: 0 24px 60px; }
       .about-inner,
@@ -418,7 +444,11 @@
   <!-- NAV -->
   <nav>
     <a class="nav-logo" href="#">
-      <img src="logo.png" alt="Vértice Strategic Advisory" />
+      <img src="logo02.png" alt="Vértice" />
+      <div class="nav-brand">
+        <span class="nav-brand-name">Vértice</span>
+        <span class="nav-brand-sub">Strategic Advisory</span>
+      </div>
     </a>
     <span class="nav-tagline">Structuring Value. Reducing Risk.</span>
   </nav>
