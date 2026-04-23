@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vértice Strategic Advisory</title>
+  <meta name="description" content="Independent boutique advisory focused on structuring and intermediating strategic transactions between entrepreneurs and investors." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:    #1b2d45;
+      --blue:    #1e4a7a;
+      --steel:   #5a6e82;
+      --slate:   #8a9aaa;
+      --fog:     #e8edf2;
+      --cream:   #f5f4f1;
+      --white:   #ffffff;
+      --charcoal:#3a4a58;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--charcoal);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(90,110,130,0.1);
+      animation: fadeDown 0.8s ease forwards;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 52px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--slate);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 620px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=80&fit=crop');
+      background-size: cover;
+      background-position: center 30%;
+      transform: scale(1.05);
+      animation: zoomOut 9s ease forwards;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.04) 0%,
+        rgba(27,45,69,0.28) 45%,
+        rgba(27,45,69,0.86) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 60px 90px;
+      max-width: 860px;
+      opacity: 0;
+      animation: fadeUp 1.2s ease 0.5s forwards;
+    }
+
+    .hero-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 20px;
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.06;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .hero-body {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.68);
+      max-width: 460px;
+      line-height: 1.78;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 96px 60px; }
+
+    .section-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 2.2rem;
+      color: var(--navy);
+      margin-bottom: 48px;
+      line-height: 1.2;
+    }
+
+    /* ── ABOUT ── */
+    .about { background: var(--cream); }
+
+    .about-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    .rule {
+      width: 40px;
+      height: 2px;
+      background: var(--blue);
+      margin: 24px 0 32px;
+    }
+
+    .stat-row { display: flex; flex-direction: column; gap: 24px; }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .stat-desc {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-top: 4px;
+    }
+
+    .about-right p {
+      font-size: 0.92rem;
+      color: var(--charcoal);
+      line-height: 1.82;
+      margin-bottom: 18px;
+    }
+
+    .about-right p:last-child { margin-bottom: 0; }
+
+    /* ── SERVICES ── */
+    .services { background: var(--white); }
+
+    .services-inner { max-width: 860px; margin: 0 auto; }
+
+    .services-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 52px;
+      gap: 40px;
+    }
+
+    .services-header .section-title { margin-bottom: 0; }
+
+    .services-note {
+      font-size: 0.85rem;
+      color: var(--slate);
+      max-width: 300px;
+      line-height: 1.65;
+      text-align: right;
+      font-style: italic;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--fog);
+    }
+
+    .service-card {
+      background: var(--white);
+      padding: 36px 32px;
+      transition: background 0.2s;
+    }
+
+    .service-card:hover { background: var(--cream); }
+
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.82rem;
+      color: var(--slate);
+      margin-bottom: 14px;
+    }
+
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      font-size: 1.18rem;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .service-desc {
+      font-size: 0.82rem;
+      color: var(--steel);
+      line-height: 1.7;
+    }
+
+    /* ── MANDATE ── */
+    .mandate {
+      background: var(--navy);
+      padding: 80px 60px;
+      text-align: center;
+    }
+
+    .mandate blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(1.3rem, 3vw, 1.85rem);
+      line-height: 1.6;
+      color: rgba(255,255,255,0.85);
+      font-style: italic;
+      max-width: 680px;
+      margin: 0 auto 22px;
+    }
+
+    .mandate cite {
+      font-family: 'Barlow', sans-serif;
+      font-style: normal;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--cream); }
+
+    .contact-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: 2.6rem;
+      color: var(--navy);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .contact-sub {
+      font-size: 0.88rem;
+      color: var(--steel);
+      line-height: 1.78;
+    }
+
+    .contact-details {
+      padding-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    .c-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 4px;
+    }
+
+    .c-value {
+      font-size: 0.92rem;
+      color: var(--navy);
+    }
+
+    .c-value a {
+      color: var(--blue);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .c-value a:hover { color: var(--navy); }
+
+    /* LinkedIn icon inline */
+    .li-icon {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 6px;
+      margin-top: -2px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      padding: 28px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer span {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.28);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes zoomOut {
+      from { transform: scale(1.05); }
+      to   { transform: scale(1); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      nav { padding: 14px 24px; }
+      .nav-tagline { display: none; }
+      .nav-logo img { height: 42px; }
+      section { padding: 64px 24px; }
+      .hero-content { padding: 0 24px 60px; }
+      .about-inner,
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      .service-grid { grid-template-columns: 1fr; }
+      .services-header { flex-direction: column; align-items: flex-start; }
+      .services-note { text-align: left; }
+      .mandate { padding: 60px 24px; }
+      footer { padding: 24px; flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">
+      <img src="logo.png" alt="Vértice Strategic Advisory" />
+    </a>
+    <span class="nav-tagline">Structuring Value. Reducing Risk.</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-img"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-label">Independent Boutique Advisory</p>
+      <h1 class="hero-headline">
+        Where capital,<br/>strategy and<br/><em>interests converge.</em>
+      </h1>
+      <p class="hero-body">
+        Structuring and intermediating strategic transactions between entrepreneurs and investors — with discipline, independence and long-term clarity.
+      </p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="about-inner reveal">
+      <div>
+        <p class="section-label">About</p>
+        <h2 class="section-title">Advisory built on structure and independence.</h2>
+        <div class="rule"></div>
+        <div class="stat-row">
+          <div>
+            <div class="stat-number">20+</div>
+            <div class="stat-desc">Years of strategic & operational experience</div>
+          </div>
+          <div>
+            <div class="stat-number">3</div>
+            <div class="stat-desc">Markets — Europe, Africa, Latin America</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-right">
+        <p>Vértice Strategic Advisory is an independent boutique advisory firm focused on the structuring and intermediation of strategic transactions between entrepreneurs and investors.</p>
+        <p>We support critical decisions involving investments, partnerships and business exits, with a disciplined approach centred on risk mitigation, capital structure and long-term financial sustainability.</p>
+        <p>Our role is to bring clarity, alignment and analytical rigour to complex situations — acting independently, without conflicts of interest, to ensure value is properly structured before capital is committed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="services-inner reveal">
+      <div class="services-header">
+        <div>
+          <p class="section-label">Services</p>
+          <h2 class="section-title">What we do.</h2>
+        </div>
+        <p class="services-note">We engage selectively — only where we can add clear strategic value and act without conflicts of interest.</p>
+      </div>
+      <div class="service-grid">
+        <div class="service-card">
+          <div class="service-num">01</div>
+          <div class="service-name">Strategic Deal Structuring</div>
+          <p class="service-desc">Investment, partnership and business exit transactions structured for value creation, governance alignment and capital clarity before execution.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-num">02</div>
+          <div class="service-name">Business Intermediation</div>
+          <p class="service-desc">Independent intermediation between entrepreneurs and investors — facilitating negotiation, aligning expectations and supporting decision-making throughout.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-num">03</div>
+          <div class="service-name">Investment & Partnership Advisory</div>
+          <p class="service-desc">Opportunity evaluation, risk assessment and capital structure definition aligned with long-term strategic objectives for investors and partners.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-num">04</div>
+          <div class="service-name">Exit & Divestment Advisory</div>
+          <p class="service-desc">Preparation and structuring of company sales or partial exits — valuation logic, deal readiness and risk management for business owners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <div class="mandate reveal">
+    <blockquote>"Clarity, alignment and analytical rigour — ensuring decisions are made with reduced risk and long-term sustainability."</blockquote>
+    <cite>— Our Mandate</cite>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <div class="contact-inner reveal">
+      <div>
+        <p class="section-label">Contact</p>
+        <h2>Let's talk.</h2>
+        <p class="contact-sub">If you are facing a critical business decision and need structured, independent advisory support — we would be glad to have a first conversation. No commitment required.</p>
+      </div>
+      <div class="contact-details">
+        <div>
+          <div class="c-label">Email</div>
+          <div class="c-value">
+            <a href="mailto:geral@verticestrategic.com">geral@verticestrategic.com</a>
+          </div>
+        </div>
+        <div>
+          <div class="c-label">LinkedIn</div>
+          <div class="c-value">
+            <a href="https://www.linkedin.com/company/v%C3%A9rtice-strategic-advisory" target="_blank" rel="noopener">
+              <svg class="li-icon" width="16" height="16" viewBox="0 0 24 24" fill="#1e4a7a" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              Vértice Strategic Advisory →
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="c-label">Location</div>
+          <div class="c-value">Viana do Castelo, Portugal · Remote</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2025 Vértice Strategic Advisory</span>
+    <span>Structuring Value. Reducing Risk.</span>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
